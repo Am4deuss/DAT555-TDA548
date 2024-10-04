@@ -24,7 +24,7 @@ def poly(a,x):
 
 textfile = sys.argv[1]
 n = sys.argv[2]
-
+n = int(n)
 
 xyPairs = loadtxt(textfile)
 
