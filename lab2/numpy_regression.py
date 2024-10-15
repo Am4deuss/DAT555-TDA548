@@ -3,8 +3,8 @@ import sys
 import matplotlib.pyplot as plt
 
 def powers(listPowers,n1,n2):
-    if listPowers == []:
-        return []
+    if len(listPowers) == 0:
+        return listPowers
     powerMatrix = []
     for i in listPowers:
         temp = []
@@ -13,27 +13,38 @@ def powers(listPowers,n1,n2):
         
         powerMatrix.append(temp)
     
-    return powerMatrix
+    return array(powerMatrix)
 
-#textfile = sys.argv[1]
-textfile = 'chirps.txt'
+def poly(a,x):
+    result = 0
+    degree = len(a)
+    for i in range(degree):
+        result += a[i] * (x ** i)
+    return result
+
+textfile = sys.argv[1]
+n = sys.argv[2]
+n = int(n)
 
 xyPairs = loadtxt(textfile)
-
-
 
 resList = transpose(xyPairs)
 x = resList[0]
 y = resList[1]
 
-Xp  = powers(x,0,1)
+Xp  = powers(x,0,n)
 Yp  = powers(y,1,1)
-Xpt = transpose(Xp)
+Xpt = Xp.transpose()
 
-[[b],[m]] = matmul(linalg.inv(matmul(Xpt,Xp)),matmul(Xpt,Yp))
+a = matmul(linalg.inv(matmul(Xpt,Xp)),matmul(Xpt,Yp))
+a = a[:,0]
+
+x2 = linspace(x[0],x[len(x)-1],int((x[len(x)-1]-x[0])/0.2)).tolist()
+y2 = [poly(a,x) for x in x2]
+
 
 
 
 plt.plot(x,y,'ro')
-plt.plot(x,y2)
+plt.plot(x2,y2)
 plt.show()

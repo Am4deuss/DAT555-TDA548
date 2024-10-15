@@ -2,8 +2,8 @@ from matrix import *
 import sys
 import matplotlib.pyplot as plt
 
-#textfile = sys.argv[1]
-textfile = 'chirps.txt'
+textfile = sys.argv[1]
+
 
 xyPairs = loadtxt(textfile)
 
@@ -17,7 +17,9 @@ Xpt = transpose(Xp)
 
 [[b],[m]] = matmul(invert(matmul(Xpt,Xp)),matmul(Xpt,Yp))
 
-
+y2 = []
+for i in x:
+    y2.append(b+m*float(i))
 
 plt.plot(x,y,'ro')
 plt.plot(x,y2)

@@ -59,14 +59,24 @@ def loadtxt(file):
     lines = data.split("\n")
     matrix = []
     for i in lines:
-        matrix.append(i.split("\t"))
+        pair = i.split("\t")
 
-    #matrix.pop(len(matrix)-1)       #Removes empty list, the fun way :P
+        if len(pair) < 2:
+            pass
+        elif len(pair) > 2:
+            pair.pop(2)
+            matrix.append(pair)
+        else:
+            matrix.append(pair)
 
-    n = 0
-    for j in matrix: # Checks if there are any empty lists and removes them
-        if len(j) < 2:
-            matrix.pop(n)
-        n += 1
+    outerIndex = 0
+    for m in matrix: # Makes every string into float values
+        innerIndex = 0
+        for n in m:
+            matrix[outerIndex][innerIndex] = float(n)
+            innerIndex += 1
+        outerIndex += 1
 
+    fileRead.close()
+    
     return matrix
