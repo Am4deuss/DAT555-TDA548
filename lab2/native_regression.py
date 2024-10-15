@@ -3,7 +3,7 @@ import sys
 import matplotlib.pyplot as plt
 
 #textfile = sys.argv[1]
-textfile = "chirps.txt"
+textfile = 'chirps.txt'
 
 xyPairs = loadtxt(textfile)
 
@@ -16,3 +16,9 @@ Yp  = powers(y,1,1)
 Xpt = transpose(Xp)
 
 [[b],[m]] = matmul(invert(matmul(Xpt,Xp)),matmul(Xpt,Yp))
+
+
+
+plt.plot(x,y,'ro')
+plt.plot(x,y2)
+plt.show()
