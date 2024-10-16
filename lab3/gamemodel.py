@@ -1,8 +1,6 @@
 from math import sin,cos,radians
 import random
 
-#TODO: Deal with all TODOs in this file and also remove the TODO and HINT comments.
-
 """ This is the model of the game"""
 class Game:
     """ Create a game with a given size of cannon (length of sides) and projectiles (radius) """
@@ -12,7 +10,6 @@ class Game:
         self.ballSize = ballSize
         self.index = 0
         self.windSpeed = (random.random() * 20) - 10
-        # HINT: This constructor needs to create two players according to the rules specified in the assignment text
         pass 
 
     """ A list containing both players """
@@ -82,21 +79,13 @@ class Player:
         
 
     def projectileDistance(self, proj):
-        # HINT: both self (a Player) and proj (a Projectile) have getX()-methods.
-        # HINT: This method should give a negative value if the projectile missed to the left and positive if it missed to the right.
-        # The distance should be how far the projectile and cannon are from touching, not the distance between their centers.
-        # You probably need to use getCannonSize and getBallSize from Game to compensate for the size of cannons/cannonballs
-
         projectilePosX = proj.getX()
         playerTargetX = self.getX()
         cannonRadius = self.game.getCannonSize() / 2
         ballRadius = self.game.getBallSize()
-       
-
         centerDistance = abs(playerTargetX - projectilePosX)
 
         edgeDistance = centerDistance - (cannonRadius + ballRadius) 
-     
         
         if edgeDistance <= 0: 
             return 0
@@ -106,8 +95,6 @@ class Player:
 
         else:
             return edgeDistance
-
-       
 
     def getScore(self):
         return self.score
